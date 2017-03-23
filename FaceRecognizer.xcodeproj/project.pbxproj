@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		A664B60E241FD2FEAA302F86 /* Pods_FaceRecognizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0AEBA4177A6AFFC30E927CE /* Pods_FaceRecognizer.framework */; };
 		FA235A0B1E82D6AA00BDE171 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA235A0A1E82D6AA00BDE171 /* AppDelegate.swift */; };
-		FA235A0D1E82D6AA00BDE171 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA235A0C1E82D6AA00BDE171 /* ViewController.swift */; };
 		FA235A101E82D6AA00BDE171 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA235A0E1E82D6AA00BDE171 /* Main.storyboard */; };
 		FA235A121E82D6AA00BDE171 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA235A111E82D6AA00BDE171 /* Assets.xcassets */; };
 		FA235A151E82D6AA00BDE171 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA235A131E82D6AA00BDE171 /* LaunchScreen.storyboard */; };
+		FA235A2D1E82FE7E00BDE171 /* haarcascade_frontalface_default.xml in Resources */ = {isa = PBXBuildFile; fileRef = FA235A2C1E82FE7E00BDE171 /* haarcascade_frontalface_default.xml */; };
+		FA235A2F1E830F7300BDE171 /* FrontCameraFaceRecognizerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA235A2E1E830F7300BDE171 /* FrontCameraFaceRecognizerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,11 +22,12 @@
 		C0AEBA4177A6AFFC30E927CE /* Pods_FaceRecognizer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FaceRecognizer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA235A071E82D6A900BDE171 /* FaceRecognizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceRecognizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA235A0A1E82D6AA00BDE171 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FA235A0C1E82D6AA00BDE171 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FA235A0F1E82D6AA00BDE171 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FA235A111E82D6AA00BDE171 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA235A141E82D6AA00BDE171 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA235A161E82D6AA00BDE171 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA235A2C1E82FE7E00BDE171 /* haarcascade_frontalface_default.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_default.xml; sourceTree = "<group>"; };
+		FA235A2E1E830F7300BDE171 /* FrontCameraFaceRecognizerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrontCameraFaceRecognizerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,8 +80,9 @@
 		FA235A091E82D6AA00BDE171 /* FaceRecognizer */ = {
 			isa = PBXGroup;
 			children = (
-				FA235A0C1E82D6AA00BDE171 /* ViewController.swift */,
 				FA235A0E1E82D6AA00BDE171 /* Main.storyboard */,
+				FA235A0A1E82D6AA00BDE171 /* AppDelegate.swift */,
+				FA235A2E1E830F7300BDE171 /* FrontCameraFaceRecognizerViewController.swift */,
 				FA235A1C1E82DAF100BDE171 /* Supporting files */,
 			);
 			path = FaceRecognizer;
@@ -88,7 +91,7 @@
 		FA235A1C1E82DAF100BDE171 /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
-				FA235A0A1E82D6AA00BDE171 /* AppDelegate.swift */,
+				FA235A2C1E82FE7E00BDE171 /* haarcascade_frontalface_default.xml */,
 				FA235A111E82D6AA00BDE171 /* Assets.xcassets */,
 				FA235A131E82D6AA00BDE171 /* LaunchScreen.storyboard */,
 				FA235A161E82D6AA00BDE171 /* Info.plist */,
@@ -161,6 +164,7 @@
 			files = (
 				FA235A151E82D6AA00BDE171 /* LaunchScreen.storyboard in Resources */,
 				FA235A121E82D6AA00BDE171 /* Assets.xcassets in Resources */,
+				FA235A2D1E82FE7E00BDE171 /* haarcascade_frontalface_default.xml in Resources */,
 				FA235A101E82D6AA00BDE171 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -220,7 +224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA235A0D1E82D6AA00BDE171 /* ViewController.swift in Sources */,
+				FA235A2F1E830F7300BDE171 /* FrontCameraFaceRecognizerViewController.swift in Sources */,
 				FA235A0B1E82D6AA00BDE171 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
