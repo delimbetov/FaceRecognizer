@@ -47,7 +47,6 @@ class FrontCameraFaceRecognizerViewController: UIViewController, AVCaptureVideoD
 	// MARK: AVCaptureVideoDataOutputSampleBufferDelegate
 	// .global queue
 	func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
-		debugPrint("captureOutput")
 		guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
 			debugPrint("Couldn't get pixel buffer")
 			return
