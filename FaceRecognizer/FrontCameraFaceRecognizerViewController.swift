@@ -20,12 +20,12 @@ class FrontCameraFaceRecognizerViewController: UIViewController, AVCaptureVideoD
 	func checkPermission() {
 		checkCameraAuthorization { [weak weakSelf = self] authorized in
 			if authorized {
-				print("authorized")
+				debugPrint("authorized")
 				
 				if weakSelf?.captureSession.isRunning == false {
 					weakSelf?.startCamera()
 				} else {
-					print("capture session is running")
+					debugPrint("capture session is running")
 				}
 			} else {
 				//that's not the kind of program where you might deny camera access and expect it to work somehow
@@ -37,46 +37,42 @@ class FrontCameraFaceRecognizerViewController: UIViewController, AVCaptureVideoD
 	// MARK: UIViewController life cycle
 	override func viewDidAppear(_ animated: Bool) {
 		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-			print("Couldn't set itself to appdelegate")
+			debugPrint("Couldn't set itself to appdelegate")
 			return
 		}
 		
 		appDelegate.rootViewController = self
 	}
 	
-	override func viewDidLoad() {
-		super.viewDidLoad()
-	}
-	
 	// MARK: AVCaptureVideoDataOutputSampleBufferDelegate
 	// .global queue
 	func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
-		print("captureOutput")
+		debugPrint("captureOutput")
 		guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
-			print("Couldn't get pixel buffer")
+			debugPrint("Couldn't get pixel buffer")
 			return
 		}
 		
 		guard let recognizer = faceRecognizer else {
-			print("recognizer is not properly instantiated")
+			debugPrint("recognizer is not properly instantiated")
 			return
 		}
 		
 		// get UIImage from pixelBuffer
 		let cameraImage = CIImage(cvPixelBuffer: pixelBuffer, options: nil)
 		guard let cgImage = convertCIImageToCGImage(inputImage: cameraImage) else {
-			print("couldn't convert CIImage to CGImage")
+			debugPrint("couldn't convert CIImage to CGImage")
 			return
 		}
 		let image = UIImage(cgImage: cgImage)
 		
-		// get UIImage with highlighted faces
+		// get UIImage with recognized faces
 		let imageWithRecognizedFaces = recognizer.recognizeFaces(on: image)
 		
+		// set UIImage to imageView on main thread
 		DispatchQueue.main.async {
 			self.imageView.image = imageWithRecognizedFaces
 		}
-		
 	}
 	
 	// MARK: Private
@@ -84,13 +80,13 @@ class FrontCameraFaceRecognizerViewController: UIViewController, AVCaptureVideoD
 		let alertController = UIAlertController(title: "No camera permission", message: "To recognize faces App needs access to camera. You may go to Settings/FaceRecognizer to allow it", preferredStyle: UIAlertControllerStyle.alert) //Replace UIAlertControllerStyle.Alert by UIAlertControllerStyle.alert
 		let settingsAction = UIAlertAction(title: "Go to settings", style: .default) { (_) -> Void in
 			guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
-				print("Chose to go to settings")
+				debugPrint("Chose to go to settings")
 				return
 			}
 			
 			if UIApplication.shared.canOpenURL(settingsUrl) {
 				UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-					print("Settings opened: \(success)") // Prints true
+					debugPrint("Settings opened: \(success)") // Prints true
 				})
 			}
 		}
@@ -128,20 +124,20 @@ class FrontCameraFaceRecognizerViewController: UIViewController, AVCaptureVideoD
 	}
 	
 	private func startCamera() {
-		print("startCamera");
+		debugPrint("startCamera");
 		//configure input
 		guard let frontCamera = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: .front) else {
-			print("Couldn't get frontCamera. This is iOS 10 based API and all ios 10 devices have front camera. It means no permissions")
+			debugPrint("Couldn't get frontCamera. This is iOS 10 based API and all ios 10 devices have front camera. It means no permissions")
 			return
 		}
 		
 		guard let videoInput = try? AVCaptureDeviceInput(device: frontCamera) else {
-			print("Unable to obtain video input for default camera.")
+			debugPrint("Unable to obtain video input for default camera.")
 			return
 		}
 		
 		guard captureSession.canAddInput(videoInput) else {
-			print("Can't add videoInput")
+			debugPrint("Can't add videoInput")
 			return
 		}
 		
@@ -152,7 +148,7 @@ class FrontCameraFaceRecognizerViewController: UIViewController, AVCaptureVideoD
 		videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue.global(qos: .default))
 		
 		guard captureSession.canAddOutput(videoOutput) else {
-			print("Can't add videoOutput")
+			debugPrint("Can't add videoOutput")
 			return
 		}
 		
@@ -169,7 +165,7 @@ class FrontCameraFaceRecognizerViewController: UIViewController, AVCaptureVideoD
 		captureSession.startRunning()
 	}
 	
-	// MARK: private
+	// MARK: Private data
 	private let captureSession = AVCaptureSession()
 	private let faceRecognizer = OpenCVRecognizer()
 }

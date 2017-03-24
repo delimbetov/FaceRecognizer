@@ -29,7 +29,7 @@
 		FA235A161E82D6AA00BDE171 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA235A2C1E82FE7E00BDE171 /* haarcascade_frontalface_default.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_default.xml; sourceTree = "<group>"; };
 		FA235A2E1E830F7300BDE171 /* FrontCameraFaceRecognizerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrontCameraFaceRecognizerViewController.swift; sourceTree = "<group>"; };
-		FACC18FA1E84730B0040D01B /* FaceRecognizer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FaceRecognizer-Bridging-Header.h"; sourceTree = "<group>"; };
+		FACC18FA1E84730B0040D01B /* FaceRecognizer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FaceRecognizer-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		FACC18FB1E84730B0040D01B /* OpenCVRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenCVRecognizer.h; path = FaceRecognizer/OpenCVRecognizer.h; sourceTree = "<group>"; };
 		FACC18FC1E84730B0040D01B /* OpenCVRecognizer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = OpenCVRecognizer.mm; path = FaceRecognizer/OpenCVRecognizer.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,6 +96,7 @@
 		FA235A1C1E82DAF100BDE171 /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
+				FACC18FA1E84730B0040D01B /* FaceRecognizer-Bridging-Header.h */,
 				FA235A2C1E82FE7E00BDE171 /* haarcascade_frontalface_default.xml */,
 				FA235A111E82D6AA00BDE171 /* Assets.xcassets */,
 				FA235A131E82D6AA00BDE171 /* LaunchScreen.storyboard */,
@@ -107,7 +108,6 @@
 		FACC18FE1E84732C0040D01B /* OpenCV Wrapper */ = {
 			isa = PBXGroup;
 			children = (
-				FACC18FA1E84730B0040D01B /* FaceRecognizer-Bridging-Header.h */,
 				FACC18FB1E84730B0040D01B /* OpenCVRecognizer.h */,
 				FACC18FC1E84730B0040D01B /* OpenCVRecognizer.mm */,
 			);
