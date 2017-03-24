@@ -52,12 +52,29 @@ class FrontCameraFaceRecognizerViewController: UIViewController, AVCaptureVideoD
 	// .global queue
 	func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
 		print("captureOutput")
-		let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
-		let cameraImage = CIImage(cvPixelBuffer: pixelBuffer!)
-		let image = UIImage(ciImage: cameraImage)
+		guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+			print("Couldn't get pixel buffer")
+			return
+		}
+		
+		guard let recognizer = faceRecognizer else {
+			print("recognizer is not properly instantiated")
+			return
+		}
+		
+		// get UIImage from pixelBuffer
+		let cameraImage = CIImage(cvPixelBuffer: pixelBuffer, options: nil)
+		guard let cgImage = convertCIImageToCGImage(inputImage: cameraImage) else {
+			print("couldn't convert CIImage to CGImage")
+			return
+		}
+		let image = UIImage(cgImage: cgImage)
+		
+		// get UIImage with highlighted faces
+		let imageWithRecognizedFaces = recognizer.recognizeFaces(on: image)
 		
 		DispatchQueue.main.async {
-			self.imageView.image = image
+			self.imageView.image = imageWithRecognizedFaces
 		}
 		
 	}
@@ -104,6 +121,12 @@ class FrontCameraFaceRecognizerViewController: UIViewController, AVCaptureVideoD
 		}
 	}
 	
+	private func convertCIImageToCGImage(inputImage: CIImage) -> CGImage? {
+		let context = CIContext(options: nil)
+		
+		return context.createCGImage(inputImage, from: inputImage.extent)
+	}
+	
 	private func startCamera() {
 		print("startCamera");
 		//configure input
@@ -148,4 +171,5 @@ class FrontCameraFaceRecognizerViewController: UIViewController, AVCaptureVideoD
 	
 	// MARK: private
 	private let captureSession = AVCaptureSession()
+	private let faceRecognizer = OpenCVRecognizer()
 }

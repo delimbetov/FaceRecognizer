@@ -14,6 +14,7 @@
 		FA235A151E82D6AA00BDE171 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA235A131E82D6AA00BDE171 /* LaunchScreen.storyboard */; };
 		FA235A2D1E82FE7E00BDE171 /* haarcascade_frontalface_default.xml in Resources */ = {isa = PBXBuildFile; fileRef = FA235A2C1E82FE7E00BDE171 /* haarcascade_frontalface_default.xml */; };
 		FA235A2F1E830F7300BDE171 /* FrontCameraFaceRecognizerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA235A2E1E830F7300BDE171 /* FrontCameraFaceRecognizerViewController.swift */; };
+		FACC18FD1E84730B0040D01B /* OpenCVRecognizer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FACC18FC1E84730B0040D01B /* OpenCVRecognizer.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,9 @@
 		FA235A161E82D6AA00BDE171 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA235A2C1E82FE7E00BDE171 /* haarcascade_frontalface_default.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_default.xml; sourceTree = "<group>"; };
 		FA235A2E1E830F7300BDE171 /* FrontCameraFaceRecognizerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrontCameraFaceRecognizerViewController.swift; sourceTree = "<group>"; };
+		FACC18FA1E84730B0040D01B /* FaceRecognizer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FaceRecognizer-Bridging-Header.h"; sourceTree = "<group>"; };
+		FACC18FB1E84730B0040D01B /* OpenCVRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenCVRecognizer.h; path = FaceRecognizer/OpenCVRecognizer.h; sourceTree = "<group>"; };
+		FACC18FC1E84730B0040D01B /* OpenCVRecognizer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = OpenCVRecognizer.mm; path = FaceRecognizer/OpenCVRecognizer.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,7 @@
 				FA235A0E1E82D6AA00BDE171 /* Main.storyboard */,
 				FA235A0A1E82D6AA00BDE171 /* AppDelegate.swift */,
 				FA235A2E1E830F7300BDE171 /* FrontCameraFaceRecognizerViewController.swift */,
+				FACC18FE1E84732C0040D01B /* OpenCV Wrapper */,
 				FA235A1C1E82DAF100BDE171 /* Supporting files */,
 			);
 			path = FaceRecognizer;
@@ -97,6 +102,17 @@
 				FA235A161E82D6AA00BDE171 /* Info.plist */,
 			);
 			name = "Supporting files";
+			sourceTree = "<group>";
+		};
+		FACC18FE1E84732C0040D01B /* OpenCV Wrapper */ = {
+			isa = PBXGroup;
+			children = (
+				FACC18FA1E84730B0040D01B /* FaceRecognizer-Bridging-Header.h */,
+				FACC18FB1E84730B0040D01B /* OpenCVRecognizer.h */,
+				FACC18FC1E84730B0040D01B /* OpenCVRecognizer.mm */,
+			);
+			name = "OpenCV Wrapper";
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,6 +151,7 @@
 					FA235A061E82D6A900BDE171 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 48L483TLQC;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -226,6 +243,7 @@
 			files = (
 				FA235A2F1E830F7300BDE171 /* FrontCameraFaceRecognizerViewController.swift in Sources */,
 				FA235A0B1E82D6AA00BDE171 /* AppDelegate.swift in Sources */,
+				FACC18FD1E84730B0040D01B /* OpenCVRecognizer.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,12 +366,15 @@
 			baseConfigurationReference = 6901D85FDDE86B035FC7A083 /* Pods-FaceRecognizer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 48L483TLQC;
 				INFOPLIST_FILE = FaceRecognizer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.delimbetov.FaceRecognizer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FaceRecognizer-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -364,12 +385,14 @@
 			baseConfigurationReference = 1FC55125B45906155D829879 /* Pods-FaceRecognizer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 48L483TLQC;
 				INFOPLIST_FILE = FaceRecognizer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.delimbetov.FaceRecognizer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FaceRecognizer-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
