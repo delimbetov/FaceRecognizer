@@ -38,6 +38,7 @@
 		FAB7D3A01E868878007D12A7 /* DetectionBasedTrackerAdapter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DetectionBasedTrackerAdapter.hpp; sourceTree = "<group>"; };
 		FAB7D3A31E86B88A007D12A7 /* SmoothPainter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SmoothPainter.cpp; sourceTree = "<group>"; };
 		FAB7D3A41E86B88A007D12A7 /* SmoothPainter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SmoothPainter.hpp; sourceTree = "<group>"; };
+		FAB7D3A61E871122007D12A7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		FACC18FA1E84730B0040D01B /* FaceRecognizer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "FaceRecognizer-Bridging-Header.h"; path = "FaceRecognizer/Supporting files/FaceRecognizer-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		FACC18FB1E84730B0040D01B /* OpenCVRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCVRecognizer.h; sourceTree = "<group>"; };
 		FACC18FC1E84730B0040D01B /* OpenCVRecognizer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVRecognizer.mm; sourceTree = "<group>"; };
@@ -75,6 +76,7 @@
 		FA2359FE1E82D6A900BDE171 = {
 			isa = PBXGroup;
 			children = (
+				FAB7D3A61E871122007D12A7 /* README.md */,
 				FA235A091E82D6AA00BDE171 /* FaceRecognizer */,
 				FA235A081E82D6AA00BDE171 /* Products */,
 				27EDA6F6FFBA7CD278CA8ACA /* Pods */,
