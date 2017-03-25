@@ -34,7 +34,7 @@ class FrontCameraFaceRecognizerViewController: UIViewController, AVCaptureVideoD
 		}
 	}
 	
-	// MARK: UIViewController life cycle
+	// MARK: UIViewController
 	override func viewDidAppear(_ animated: Bool) {
 		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
 			debugPrint("Couldn't set itself to appdelegate")
@@ -42,6 +42,11 @@ class FrontCameraFaceRecognizerViewController: UIViewController, AVCaptureVideoD
 		}
 		
 		appDelegate.rootViewController = self
+		statusBarHidden = true
+	}
+	
+	override var prefersStatusBarHidden: Bool {
+		return statusBarHidden
 	}
 	
 	// MARK: AVCaptureVideoDataOutputSampleBufferDelegate
@@ -167,6 +172,17 @@ class FrontCameraFaceRecognizerViewController: UIViewController, AVCaptureVideoD
 	}
 	
 	// MARK: Private data
+	private struct Constant {
+		static let statusBarHidingAnimateDuration = 2.0
+	}
+	
 	private let captureSession = AVCaptureSession()
 	private let faceRecognizer = OpenCVRecognizer()
+	private var statusBarHidden = false {
+		didSet {
+			UIView.animate(withDuration: Constant.statusBarHidingAnimateDuration) { [weak weakSelf = self] in
+				weakSelf?.setNeedsStatusBarAppearanceUpdate()
+			}
+		}
+	}
 }
