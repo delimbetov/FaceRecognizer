@@ -14,6 +14,8 @@
 		FA235A151E82D6AA00BDE171 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA235A131E82D6AA00BDE171 /* LaunchScreen.storyboard */; };
 		FA235A2D1E82FE7E00BDE171 /* haarcascade_frontalface_default.xml in Resources */ = {isa = PBXBuildFile; fileRef = FA235A2C1E82FE7E00BDE171 /* haarcascade_frontalface_default.xml */; };
 		FA235A2F1E830F7300BDE171 /* FrontCameraFaceRecognizerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA235A2E1E830F7300BDE171 /* FrontCameraFaceRecognizerViewController.swift */; };
+		FAB7D39E1E8681A8007D12A7 /* CascadeDetectorAdapter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAB7D39C1E8681A8007D12A7 /* CascadeDetectorAdapter.cpp */; };
+		FAB7D3A11E868878007D12A7 /* DetectionBasedTrackerAdapter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAB7D39F1E868878007D12A7 /* DetectionBasedTrackerAdapter.cpp */; };
 		FACC18FD1E84730B0040D01B /* OpenCVRecognizer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FACC18FC1E84730B0040D01B /* OpenCVRecognizer.mm */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +31,10 @@
 		FA235A161E82D6AA00BDE171 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA235A2C1E82FE7E00BDE171 /* haarcascade_frontalface_default.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_default.xml; sourceTree = "<group>"; };
 		FA235A2E1E830F7300BDE171 /* FrontCameraFaceRecognizerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrontCameraFaceRecognizerViewController.swift; sourceTree = "<group>"; };
+		FAB7D39C1E8681A8007D12A7 /* CascadeDetectorAdapter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CascadeDetectorAdapter.cpp; path = FaceRecognizer/CascadeDetectorAdapter.cpp; sourceTree = "<group>"; };
+		FAB7D39D1E8681A8007D12A7 /* CascadeDetectorAdapter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = CascadeDetectorAdapter.hpp; path = FaceRecognizer/CascadeDetectorAdapter.hpp; sourceTree = "<group>"; };
+		FAB7D39F1E868878007D12A7 /* DetectionBasedTrackerAdapter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DetectionBasedTrackerAdapter.cpp; path = FaceRecognizer/DetectionBasedTrackerAdapter.cpp; sourceTree = "<group>"; };
+		FAB7D3A01E868878007D12A7 /* DetectionBasedTrackerAdapter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DetectionBasedTrackerAdapter.hpp; path = FaceRecognizer/DetectionBasedTrackerAdapter.hpp; sourceTree = "<group>"; };
 		FACC18FA1E84730B0040D01B /* FaceRecognizer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FaceRecognizer-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		FACC18FB1E84730B0040D01B /* OpenCVRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenCVRecognizer.h; path = FaceRecognizer/OpenCVRecognizer.h; sourceTree = "<group>"; };
 		FACC18FC1E84730B0040D01B /* OpenCVRecognizer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = OpenCVRecognizer.mm; path = FaceRecognizer/OpenCVRecognizer.mm; sourceTree = "<group>"; };
@@ -110,6 +116,10 @@
 			children = (
 				FACC18FB1E84730B0040D01B /* OpenCVRecognizer.h */,
 				FACC18FC1E84730B0040D01B /* OpenCVRecognizer.mm */,
+				FAB7D39C1E8681A8007D12A7 /* CascadeDetectorAdapter.cpp */,
+				FAB7D39D1E8681A8007D12A7 /* CascadeDetectorAdapter.hpp */,
+				FAB7D39F1E868878007D12A7 /* DetectionBasedTrackerAdapter.cpp */,
+				FAB7D3A01E868878007D12A7 /* DetectionBasedTrackerAdapter.hpp */,
 			);
 			name = "OpenCV Wrapper";
 			path = ..;
@@ -243,7 +253,9 @@
 			files = (
 				FA235A2F1E830F7300BDE171 /* FrontCameraFaceRecognizerViewController.swift in Sources */,
 				FA235A0B1E82D6AA00BDE171 /* AppDelegate.swift in Sources */,
+				FAB7D39E1E8681A8007D12A7 /* CascadeDetectorAdapter.cpp in Sources */,
 				FACC18FD1E84730B0040D01B /* OpenCVRecognizer.mm in Sources */,
+				FAB7D3A11E868878007D12A7 /* DetectionBasedTrackerAdapter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
