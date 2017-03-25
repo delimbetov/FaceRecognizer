@@ -12,13 +12,6 @@
 #include "DetectionBasedTrackerAdapter.hpp"
 #import "OpenCVRecognizer.h"
 
-//DEBUG
-#include <thread>
-#include <atomic>
-std::thread _fpsThread;
-std::atomic<int> _counter;
-//
-
 @interface OpenCVRecognizer()
 {
 	DetectionBasedTrackerAdapter _dbtAdapter;
@@ -40,17 +33,6 @@ std::atomic<int> _counter;
 		return nil;
 	}
 	
-	//DEBUG
-	_counter = 0;
-	_fpsThread = std::thread([&]() {
-		while(true) {
-			std::this_thread::sleep_for(std::chrono::seconds(1));
-			std::cout << "FPS=" << _counter << '\n';
-			_counter = 0;
-		}
-	});
-	//
-	
 	return self;
 }
 
@@ -63,10 +45,6 @@ std::atomic<int> _counter;
 	
 	// detect faces and draw rectangles around them on mat
 	_dbtAdapter.process(mat);
-
-	//DEBUG
-	++_counter;
-	//
 	
 	// cv::Mat -> UIImage
 	return MatToUIImage(mat);
