@@ -35,8 +35,8 @@ public:
 	
 private:
 	cv::CascadeClassifier _cascade;
-	// flags passed to detectMultiScale; depend on type
-	int _flags;
+	// flags passed to detectMultiScale; depend on DetectorType
+	int _flags = 0;
 };
 
 #endif /* CascadeDetectorAdapter_hpp */

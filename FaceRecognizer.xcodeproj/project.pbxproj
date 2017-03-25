@@ -16,6 +16,7 @@
 		FA235A2F1E830F7300BDE171 /* FrontCameraFaceRecognizerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA235A2E1E830F7300BDE171 /* FrontCameraFaceRecognizerViewController.swift */; };
 		FAB7D39E1E8681A8007D12A7 /* CascadeDetectorAdapter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAB7D39C1E8681A8007D12A7 /* CascadeDetectorAdapter.cpp */; };
 		FAB7D3A11E868878007D12A7 /* DetectionBasedTrackerAdapter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAB7D39F1E868878007D12A7 /* DetectionBasedTrackerAdapter.cpp */; };
+		FAB7D3A51E86B88A007D12A7 /* SmoothPainter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAB7D3A31E86B88A007D12A7 /* SmoothPainter.cpp */; };
 		FACC18FD1E84730B0040D01B /* OpenCVRecognizer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FACC18FC1E84730B0040D01B /* OpenCVRecognizer.mm */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,8 @@
 		FAB7D39D1E8681A8007D12A7 /* CascadeDetectorAdapter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = CascadeDetectorAdapter.hpp; path = FaceRecognizer/CascadeDetectorAdapter.hpp; sourceTree = "<group>"; };
 		FAB7D39F1E868878007D12A7 /* DetectionBasedTrackerAdapter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DetectionBasedTrackerAdapter.cpp; path = FaceRecognizer/DetectionBasedTrackerAdapter.cpp; sourceTree = "<group>"; };
 		FAB7D3A01E868878007D12A7 /* DetectionBasedTrackerAdapter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DetectionBasedTrackerAdapter.hpp; path = FaceRecognizer/DetectionBasedTrackerAdapter.hpp; sourceTree = "<group>"; };
+		FAB7D3A31E86B88A007D12A7 /* SmoothPainter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SmoothPainter.cpp; sourceTree = "<group>"; };
+		FAB7D3A41E86B88A007D12A7 /* SmoothPainter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SmoothPainter.hpp; sourceTree = "<group>"; };
 		FACC18FA1E84730B0040D01B /* FaceRecognizer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FaceRecognizer-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		FACC18FB1E84730B0040D01B /* OpenCVRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenCVRecognizer.h; path = FaceRecognizer/OpenCVRecognizer.h; sourceTree = "<group>"; };
 		FACC18FC1E84730B0040D01B /* OpenCVRecognizer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = OpenCVRecognizer.mm; path = FaceRecognizer/OpenCVRecognizer.mm; sourceTree = "<group>"; };
@@ -90,10 +93,8 @@
 		FA235A091E82D6AA00BDE171 /* FaceRecognizer */ = {
 			isa = PBXGroup;
 			children = (
-				FA235A0E1E82D6AA00BDE171 /* Main.storyboard */,
-				FA235A0A1E82D6AA00BDE171 /* AppDelegate.swift */,
-				FA235A2E1E830F7300BDE171 /* FrontCameraFaceRecognizerViewController.swift */,
-				FACC18FE1E84732C0040D01B /* OpenCV Wrapper */,
+				FAB7D3A21E86B6C2007D12A7 /* iOS Layer */,
+				FACC18FE1E84732C0040D01B /* OpenCV Layer */,
 				FA235A1C1E82DAF100BDE171 /* Supporting files */,
 			);
 			path = FaceRecognizer;
@@ -111,17 +112,29 @@
 			name = "Supporting files";
 			sourceTree = "<group>";
 		};
-		FACC18FE1E84732C0040D01B /* OpenCV Wrapper */ = {
+		FAB7D3A21E86B6C2007D12A7 /* iOS Layer */ = {
+			isa = PBXGroup;
+			children = (
+				FA235A0E1E82D6AA00BDE171 /* Main.storyboard */,
+				FA235A0A1E82D6AA00BDE171 /* AppDelegate.swift */,
+				FA235A2E1E830F7300BDE171 /* FrontCameraFaceRecognizerViewController.swift */,
+			);
+			name = "iOS Layer";
+			sourceTree = "<group>";
+		};
+		FACC18FE1E84732C0040D01B /* OpenCV Layer */ = {
 			isa = PBXGroup;
 			children = (
 				FACC18FB1E84730B0040D01B /* OpenCVRecognizer.h */,
 				FACC18FC1E84730B0040D01B /* OpenCVRecognizer.mm */,
 				FAB7D39C1E8681A8007D12A7 /* CascadeDetectorAdapter.cpp */,
 				FAB7D39D1E8681A8007D12A7 /* CascadeDetectorAdapter.hpp */,
+				FAB7D3A31E86B88A007D12A7 /* SmoothPainter.cpp */,
+				FAB7D3A41E86B88A007D12A7 /* SmoothPainter.hpp */,
 				FAB7D39F1E868878007D12A7 /* DetectionBasedTrackerAdapter.cpp */,
 				FAB7D3A01E868878007D12A7 /* DetectionBasedTrackerAdapter.hpp */,
 			);
-			name = "OpenCV Wrapper";
+			name = "OpenCV Layer";
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -252,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA235A2F1E830F7300BDE171 /* FrontCameraFaceRecognizerViewController.swift in Sources */,
+				FAB7D3A51E86B88A007D12A7 /* SmoothPainter.cpp in Sources */,
 				FA235A0B1E82D6AA00BDE171 /* AppDelegate.swift in Sources */,
 				FAB7D39E1E8681A8007D12A7 /* CascadeDetectorAdapter.cpp in Sources */,
 				FACC18FD1E84730B0040D01B /* OpenCVRecognizer.mm in Sources */,

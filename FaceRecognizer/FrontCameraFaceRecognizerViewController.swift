@@ -75,6 +75,7 @@ class FrontCameraFaceRecognizerViewController: UIViewController, AVCaptureVideoD
 	}
 	
 	// MARK: Private
+	// alert about lack of camera permission and let user jump to settings to fix it
 	private func alertUserAboutLackOfPermission() {
 		let alertController = UIAlertController(title: "No camera permission", message: "To recognize faces App needs access to camera. You may go to Settings/FaceRecognizer to allow it", preferredStyle: UIAlertControllerStyle.alert) //Replace UIAlertControllerStyle.Alert by UIAlertControllerStyle.alert
 		let settingsAction = UIAlertAction(title: "Go to settings", style: .default) { (_) -> Void in
@@ -122,6 +123,7 @@ class FrontCameraFaceRecognizerViewController: UIViewController, AVCaptureVideoD
 		return context.createCGImage(inputImage, from: inputImage.extent)
 	}
 	
+	// configures capture session and starts it
 	private func startCamera() {
 		debugPrint("startCamera");
 		//configure input

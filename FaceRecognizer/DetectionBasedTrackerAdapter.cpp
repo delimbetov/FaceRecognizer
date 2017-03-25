@@ -10,19 +10,12 @@
 #include <iostream>
 //---------------------------------------------------------------
 #include <opencv2/imgproc/imgproc.hpp>
+//---------------------------------------------------------------
 #include "DetectionBasedTrackerAdapter.hpp"
 //---------------------------------------------------------------
 
 /***************************************************************/
 namespace Constant {
-	namespace FaceRect {
-		// color of rectangle
-		// 200, 200, 0 - yellow
-		const auto scalar = cv::Scalar(200, 200, 0);
-		// thickness of rectange border line
-		constexpr int thickness = 3;
-	}
-	
 	// cv::DetectionBasedTracker::Parameters
 	namespace Param {
 		// how much frames without detecting (if not mistaken)
@@ -76,7 +69,7 @@ bool DetectionBasedTrackerAdapter::load(const std::string& cascadeFileName)
 void DetectionBasedTrackerAdapter::process(cv::Mat& image)
 {
 	cv::Mat scaledDownGrayImage;
-	DetectedFaces faceRects;
+	DetectedObjects objects;
 	
 	if(!_dbtracker)
 	{
@@ -97,21 +90,8 @@ void DetectionBasedTrackerAdapter::process(cv::Mat& image)
 	_dbtracker->process(scaledDownGrayImage);
 	
 	// extract rects with detected faces
-	_dbtracker->getObjects(faceRects);
+	_dbtracker->getObjects(objects);
 	
-	//DEBUG
-	std::vector<std::pair<cv::Rect, int>> objs;
-	_dbtracker->getObjects(objs);
-	for(auto& obj : objs)
-		std::cerr << "OBJECT id=" << obj.second << '\n';
-	//
-	
-	for(const auto& rect : faceRects)
-	{
-		// scale rect as if it was detected in normal sized image
-		const auto scaledToNormalRect = cv::Rect(rect.tl() * Constant::scale,  rect.size() * Constant::scale);
-		
-		// draw rectangles around faces
-		cv::rectangle(image, scaledToNormalRect, Constant::FaceRect::scalar, Constant::FaceRect::thickness);
-	}
+	// paint them
+	_painter.paint(image, objects, Constant::scale);
 }

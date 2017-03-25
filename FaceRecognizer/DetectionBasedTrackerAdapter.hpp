@@ -13,6 +13,7 @@
 #include <memory>
 //---------------------------------------------------------------
 #include "CascadeDetectorAdapter.hpp"
+#include "SmoothPainter.hpp"
 //---------------------------------------------------------------
 
 class DetectionBasedTrackerAdapter
@@ -23,11 +24,12 @@ public:
 	/// false if loading fails
 	bool load(const std::string& cascadeFileName);
 	
-	/// 
+	/// detect faces on image and paint rectangles around them
 	void process(cv::Mat& image);
 	
 private:
 	std::unique_ptr<cv::DetectionBasedTracker> _dbtracker;
+	SmoothPainter _painter;
 };
 
 #endif /* DetectionBasedTrackerAdapter_hpp */
