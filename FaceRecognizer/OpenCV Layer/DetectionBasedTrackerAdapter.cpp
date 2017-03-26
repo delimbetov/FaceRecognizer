@@ -21,11 +21,11 @@ namespace Constant {
 		// how much frames without detecting (if not mistaken)
 		constexpr auto maxTrackLifetime = 30;
 		// min time between rerunning detector on whole image in ms
-		constexpr auto minDetectionPeriod = 1000; // 1000ms == 1second
+		constexpr auto minDetectionPeriod = 500; // 1000ms == 1second
 	}
 	
 	// multiplty by this to get normal rect from scaledDown
-	constexpr int scale = 5;
+	constexpr int scale = 4;
 	// use in resize as fx and fy
 	const double downScale = 1.0 / scale;
 	

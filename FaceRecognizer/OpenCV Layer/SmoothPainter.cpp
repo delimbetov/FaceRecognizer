@@ -18,7 +18,7 @@ namespace Constant {
 		// color of rectangle
 		// 200, 200, 0 - yellow
 		const auto scalar = cv::Scalar(200, 200, 0);
-		// thickness of rectange border line
+		// thickness of rectangle border line
 		constexpr int thickness = 3;
 	}
 	

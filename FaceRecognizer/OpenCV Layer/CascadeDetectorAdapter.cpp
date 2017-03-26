@@ -15,13 +15,13 @@
 /***************************************************************/
 namespace Constant {
 	namespace DetectMultiScale {
-		constexpr double scaleFactor = 1.25;
+		constexpr double scaleFactor = 1.2;
 		constexpr int minNeighbours = 3;
 		constexpr int flagsMain = CV_HAAR_SCALE_IMAGE;
 		// tracking is done for single object - so looking for single biggest is acceptable
 		constexpr int flagsTracking = CV_HAAR_FIND_BIGGEST_OBJECT | CV_HAAR_SCALE_IMAGE;
 		// min size of detectable face. lower -> worse performance
-		const auto minSize = cv::Size(50, 50);
+		const auto minSize = cv::Size(20, 20);
 	}
 }
 
