@@ -23,7 +23,7 @@ namespace Constant {
 	}
 	
 	// part of distance to new position object is moved per frame
-	constexpr auto partOfLengthToBeMovedPerFrame = 7;
+	constexpr auto partOfLengthToBeMovedPerFrame = 5;
 }
 
 /***************************************************************/

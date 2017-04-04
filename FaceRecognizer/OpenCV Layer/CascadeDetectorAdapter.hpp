@@ -27,7 +27,7 @@ public:
 		tracking
 	};
 	
-	/// @exception std::runtime_error if can't load
+	/// @exception std::runtime_error if can't load cascadeFileName
 	CascadeDetectorAdapter(const std::string& cascadeFileName, const DetectorType type);
 	
 	/// cv::DetectionBasedTracker::IDetector

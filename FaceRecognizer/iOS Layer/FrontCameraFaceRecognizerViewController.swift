@@ -34,6 +34,14 @@ class FrontCameraFaceRecognizerViewController: UIViewController, AVCaptureVideoD
 		}
 	}
 	
+	func stopSession() {
+		DispatchQueue.global().async { [weak weakSelf = self] in
+			debugPrint("stop session...")
+			weakSelf?.captureSession.stopRunning()
+			debugPrint("...session stopped")
+		}
+	}
+	
 	// MARK: UIViewController
 	override func viewDidAppear(_ animated: Bool) {
 		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -82,7 +90,7 @@ class FrontCameraFaceRecognizerViewController: UIViewController, AVCaptureVideoD
 	// MARK: Private
 	// alert about lack of camera permission and let user jump to settings to fix it
 	private func alertUserAboutLackOfPermission() {
-		let alertController = UIAlertController(title: "No camera permission", message: "To recognize faces App needs access to camera. You may go to Settings/FaceRecognizer to allow it", preferredStyle: UIAlertControllerStyle.alert) //Replace UIAlertControllerStyle.Alert by UIAlertControllerStyle.alert
+		let alertController = UIAlertController(title: "No camera permission", message: "To recognize faces App needs access to camera. You may go to Settings/FaceRecognizer to allow it", preferredStyle: UIAlertControllerStyle.alert)
 		let settingsAction = UIAlertAction(title: "Go to settings", style: .default) { (_) -> Void in
 			guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
 				debugPrint("Chose to go to settings")
@@ -131,41 +139,50 @@ class FrontCameraFaceRecognizerViewController: UIViewController, AVCaptureVideoD
 	// configures capture session and starts it
 	private func startCamera() {
 		debugPrint("startCamera");
-		//configure input
-		guard let frontCamera = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: .front) else {
-			debugPrint("Couldn't get frontCamera. This is iOS 10 based API and all ios 10 devices have front camera. It means no permissions")
-			return
+		
+		if !captureSessionConfigured {
+			//configure input
+			debugPrint("configuring session...")
+			guard let frontCamera = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: .front) else {
+				debugPrint("Couldn't get frontCamera. This is iOS 10 based API and all ios 10 devices have front camera. It means no permissions")
+				return
+			}
+			
+			guard let videoInput = try? AVCaptureDeviceInput(device: frontCamera) else {
+				debugPrint("Unable to obtain video input for default camera.")
+				return
+			}
+			
+			guard captureSession.canAddInput(videoInput) else {
+				debugPrint("Can't add videoInput")
+				return
+			}
+			
+			//configure output
+			//video output
+			let videoOutput = AVCaptureVideoDataOutput()
+			
+			videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue.global(qos: .default))
+			
+			guard captureSession.canAddOutput(videoOutput) else {
+				debugPrint("Can't add videoOutput")
+				return
+			}
+			
+			// Configure the session.
+			captureSession.beginConfiguration()
+			captureSession.sessionPreset = AVCaptureSessionPresetHigh
+			captureSession.addInput(videoInput)
+			captureSession.addOutput(videoOutput)
+			videoOutput.connection(withMediaType: AVMediaTypeVideo).videoOrientation = .portrait
+			videoOutput.connection(withMediaType: AVMediaTypeVideo).isVideoMirrored = true
+			captureSession.commitConfiguration()
+			captureSessionConfigured = true
+			debugPrint("...session configured")
 		}
-		
-		guard let videoInput = try? AVCaptureDeviceInput(device: frontCamera) else {
-			debugPrint("Unable to obtain video input for default camera.")
-			return
+		else {
+			debugPrint("session configured already; restarting")
 		}
-		
-		guard captureSession.canAddInput(videoInput) else {
-			debugPrint("Can't add videoInput")
-			return
-		}
-		
-		//configure output
-		//video output
-		let videoOutput = AVCaptureVideoDataOutput()
-		
-		videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue.global(qos: .default))
-		
-		guard captureSession.canAddOutput(videoOutput) else {
-			debugPrint("Can't add videoOutput")
-			return
-		}
-		
-		// Configure the session.
-		captureSession.beginConfiguration()
-		captureSession.sessionPreset = AVCaptureSessionPresetHigh
-		captureSession.addInput(videoInput)
-		captureSession.addOutput(videoOutput)
-		videoOutput.connection(withMediaType: AVMediaTypeVideo).videoOrientation = .portrait
-		videoOutput.connection(withMediaType: AVMediaTypeVideo).isVideoMirrored = true
-		captureSession.commitConfiguration()
 		
 		// start session
 		captureSession.startRunning()
@@ -177,6 +194,7 @@ class FrontCameraFaceRecognizerViewController: UIViewController, AVCaptureVideoD
 	}
 	
 	private let captureSession = AVCaptureSession()
+	private var captureSessionConfigured = false
 	private let faceRecognizer = OpenCVRecognizer()
 	private var statusBarHidden = false {
 		didSet {

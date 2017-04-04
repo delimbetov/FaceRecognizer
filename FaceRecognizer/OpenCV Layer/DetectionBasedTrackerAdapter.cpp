@@ -33,12 +33,6 @@ namespace Constant {
 
 /***************************************************************/
 /***************************************************************/
-DetectionBasedTrackerAdapter::DetectionBasedTrackerAdapter()
-{
-	
-}
-
-/***************************************************************/
 bool DetectionBasedTrackerAdapter::load(const std::string& cascadeFileName)
 {
 	try

@@ -19,7 +19,7 @@
 class DetectionBasedTrackerAdapter
 {
 public:
-	DetectionBasedTrackerAdapter();
+	DetectionBasedTrackerAdapter() = default;
 	
 	/// false if loading fails
 	bool load(const std::string& cascadeFileName);

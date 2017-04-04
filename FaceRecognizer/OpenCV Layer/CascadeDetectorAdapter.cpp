@@ -40,6 +40,7 @@ CascadeDetectorAdapter::CascadeDetectorAdapter(const std::string& cascadeFileNam
 			break;
 		case DetectorType::tracking:
 			_flags = Constant::DetectMultiScale::flagsTracking;
+			break;
 	}
 	
 	if(!_cascade.load(cascadeFileName))
